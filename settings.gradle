@@ -19,8 +19,8 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'laa-spring-boot-microservice-template'
+rootProject.name = 'laa-crime-court-message-processor'
 
-include 'spring-boot-microservice-api'
-include 'spring-boot-microservice-service'
+include 'crime-court-message-processor-api'
+include 'crime-court-message-processor-service'
 
