@@ -5,6 +5,11 @@ plugins {
     id "info.solidsoft.pitest" version "1.15.0"
     id "org.springframework.boot" version "3.5.6"
     id "io.spring.dependency-management" version "1.1.6"
+    id "io.sentry.jvm.gradle" version "5.12.0"
+}
+
+repositories {
+    mavenCentral()
 }
 
 group = "uk.gov.justice.laa.crime"
@@ -33,6 +38,14 @@ java {
     targetCompatibility = JavaVersion.VERSION_21
 }
 
+bootRun {
+    mainClass = 'uk.gov.justice.laa.crime.courtmessageprocessor.CourtMessageProcessorApplication' //
+}
+
+bootJar {
+    mainClass = 'uk.gov.justice.laa.crime.courtmessageprocessor.CourtMessageProcessorApplication' //
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -47,8 +60,15 @@ sourceSets {
     }
 }
 
-repositories {
-    mavenCentral()
+sentry {
+    // Generates a JVM (Java, Kotlin, etc.) source bundle and uploads your source code to Sentry.
+    // This enables source context, allowing you to see your source
+    // code as part of your stack traces in Sentry.
+    includeSourceContext = true
+
+    org = "ministryofjustice"
+    projectName = "laa-crime-court-message-processor"
+    authToken = System.getenv("SENTRY_AUTH_TOKEN")
 }
 
 dependencies {
@@ -78,14 +98,15 @@ dependencies {
     implementation "io.github.resilience4j:resilience4j-reactor:$versions.resilience4j"
     implementation "io.github.resilience4j:resilience4j-spring-boot3:$versions.resilience4j"
 
-    implementation "org.postgresql:postgresql"
-    implementation "org.liquibase:liquibase-core"
+//    implementation "org.postgresql:postgresql"
+//    implementation "org.liquibase:liquibase-core"
 
     implementation "com.google.code.gson:gson"
 
     implementation 'io.micrometer:micrometer-tracing'
     implementation "io.micrometer:micrometer-registry-prometheus"
     implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+    implementation "com.h2database:h2"
 
     implementation "uk.gov.service.notify:notifications-java-client:$versions.notifyClient"
 
@@ -93,7 +114,6 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok"
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
-    testImplementation "com.h2database:h2"
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "org.wiremock.integrations:wiremock-spring-boot:$versions.wiremock"
 
@@ -129,21 +149,17 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it,
-                    exclude: ["**/entity/**",
-                              "**/dto/**",
-                              "**/config/**"])
+                    exclude: ["**/entity/**"])
         }))
     }
 }
 
 pitest {
     targetClasses = ["uk.gov.justice.laa.crime.courtmessageprocessor.*",
-                     "uk.gov.justice.laa.crime.courtmessageprocessor.controller.*",
-                     "uk.gov.justice.laa.crime.courtmessageprocessor.validation.*"
+                     "uk.gov.justice.laa.crime.courtmessageprocessor.controller.*"
     ]
-    excludedClasses = ["uk.gov.justice.laa.crime.courtmessageprocessor.dto.*",
-                       "uk.gov.justice.laa.crime.courtmessageprocessor.mapper.*",
-                       "uk.gov.justice.laa.crime.courtmessageprocessor.CrimeCourtMessageProcessorApplication"
+    excludedClasses = ["uk.gov.justice.laa.crime.courtmessageprocessor.mapper.*",
+                       "uk.gov.justice.laa.crime.courtmessageprocessor.CourtMessageProcessorApplication"
     ]
     threads = 5
     mutationThreshold = 60
@@ -163,8 +179,8 @@ sonar {
     skipProject = !isCiBuild
     properties {
         property "sonar.exclusions", "**/entity/**.java , **/model/**.java , **/dto/**.java , **/config/**.java, **/jms/**.java,**/exception/**.java,**/handler/**.java"
-        property "sonar.coverage.exclusions", "**/CrimeCourtMessageProcessorApplication.java"
-        property "sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.coverage.exclusions", "**/CourtMessageProcessorApplication.java"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory}/reports/jacoco/test/jacocoTestReport.xml"
         property "sonar.projectKey", "ministryofjustice_laa-crime-court-message-processor"
         property "sonar.organization", "ministryofjustice"
         property "sonar.host.url", "https://sonarcloud.io"
@@ -173,4 +189,3 @@ sonar {
         property "sonar.pitest.reportsDirectory", "build/reports/pitest"
     }
 }
-

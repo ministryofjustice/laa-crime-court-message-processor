@@ -1,16 +1,22 @@
 spring:
   application:
     name: LAA Crime Court Message Processor Microservice
+  profiles:
+    active: dev
+  cloud:
+    aws:
+      region:
+        static: eu-west-2
 
   # example database
-  datasource:
-    url: jdbc:h2:mem:itemsDb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
-  h2:
-    console:
-      enabled: true
+  #datasource:
+  #  url: jdbc:h2:mem:itemsDb
+  #  driver-class-name: org.h2.Driver
+  #  username: sa
+  #  password: password
+  #h2:
+  #  console:
+  #    enabled: true
 
   #do not auto create db schema, use .sql scripts
   jpa:
@@ -23,6 +29,12 @@ info:
     name: LAA Crime Court Message Processor Microservice application
     description: Crime Court Message Processor Microservice application that provides a REST API.
     version: 1.0.0
+
+sentry:
+  dsn: https://d0eb7c48a9dee311aaacc83a0b8404c6@o345774.ingest.us.sentry.io/4510069690204160
+  # Add data like request headers and IP for users,
+  # see https://docs.sentry.io/platforms/java/guides/spring-boot/data-management/data-collected/ for more info
+  send-default-pii: true
 
 management:
   # specify actuator endpoints to enable
