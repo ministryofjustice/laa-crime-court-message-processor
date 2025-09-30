@@ -62,7 +62,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-coverage-report
-          path: crime-court-message-processor-service/build/reports/jacoco
+          path: crime-court-message-processor-service/build/reports/jacoco/test
           retention-days: 14
 
   vulnerability-report:

@@ -21,6 +21,5 @@ pluginManagement {
 
 rootProject.name = 'laa-crime-court-message-processor'
 
-include 'crime-court-message-processor-api'
 include 'crime-court-message-processor-service'
 

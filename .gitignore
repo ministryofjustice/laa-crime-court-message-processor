@@ -6,7 +6,7 @@ build/
 !**/src/test/**/build/
 .DS_Store
 
-crime-court-message-processor-api/generated
+###crime-court-message-processor-api/generated
 
 ### IntelliJ IDEA ###
 .idea
