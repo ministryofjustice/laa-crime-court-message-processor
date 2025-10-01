@@ -50,6 +50,7 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    testSqsIntegrationImplementation.extendsFrom testImplementation
 }
 
 sourceSets {
@@ -104,6 +105,11 @@ dependencies {
 
     testCompileOnly "org.projectlombok:lombok"
     testAnnotationProcessor "org.projectlombok:lombok"
+
+    testSqsIntegrationImplementation "com.amazonaws:aws-java-sdk:$versions.awsJavaSDK"
+    testSqsIntegrationImplementation "com.amazonaws:aws-java-sdk-sqs:$versions.awsJavaSDK"
+    testSqsIntegrationImplementation "org.testcontainers:localstack:$versions.testcontainers"
+    testSqsIntegrationImplementation "org.testcontainers:junit-jupiter:$versions.testcontainers"
 }
 
 test {

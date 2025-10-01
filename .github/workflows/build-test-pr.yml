@@ -31,9 +31,6 @@ jobs:
       - name: Test coverage verification
         run: ./gradlew jacocoTestCoverageVerification
 
-      - name: Integration test
-        run: ./gradlew integrationTest --tests '*IntegrationTest'
-
       - name: Publish package
         run: ./gradlew publish
         env:
