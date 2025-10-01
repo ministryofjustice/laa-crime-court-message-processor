@@ -30,7 +30,8 @@ def versions = [
         testcontainers          : "1.21.0",
         resilience4j            : "2.3.0",
         wiremock                : "3.10.0",
-        notifyClient            : "5.2.1-RELEASE"
+        notifyClient            : "5.2.1-RELEASE",
+        commonsLang3            : "3.18.0"
 ]
 
 java {
@@ -65,6 +66,7 @@ dependencies {
     implementation platform("io.sentry:sentry-bom:$versions.sentry")
     implementation "io.sentry:sentry-spring-boot-starter-jakarta"
     implementation "io.sentry:sentry-logback"
+    implementation "org.apache.commons:commons-lang3:$versions.commonsLang3"
 
     implementation "uk.gov.justice.service.laa-crime:crime-commons-classes:$versions.crimeCommonsClasses"
     implementation "uk.gov.justice.service.laa-crime:crime-commons-mod-schemas:$versions.commonsModSchemas"
