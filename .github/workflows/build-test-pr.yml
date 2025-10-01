@@ -31,10 +31,13 @@ jobs:
       - name: Test coverage verification
         run: ./gradlew jacocoTestCoverageVerification
 
-      - name: Publish package
-        run: ./gradlew publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Integration test
+#        run: ./gradlew integrationTest --tests '*IntegrationTest'
+
+#      - name: Publish package
+#        run: ./gradlew publish
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload checkstyle report
         if: always()
