@@ -107,10 +107,10 @@ jobs:
       - name: Build a Docker image
         run: |
           pushd crime-court-message-processor-service
-          docker build -t crime-court-message-processor-service .
+          docker build -t crime-court-message-processor-service:scan .
 
       - name: Run Snyk to check Docker image for vulnerabilities
         uses: snyk/actions/docker@master
         with:
-          image: crime-court-message-processor-service
-          args: --file=Dockerfile --severity-threshold=high
+          image: crime-court-message-processor-service:scan
+          args: --file=crime-court-message-processor-service/Dockerfile --severity-threshold=high
