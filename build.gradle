@@ -1,3 +1,0 @@
-subprojects {
-    group = 'uk.gov.justice.laa-crime-court-message-processor'
-}

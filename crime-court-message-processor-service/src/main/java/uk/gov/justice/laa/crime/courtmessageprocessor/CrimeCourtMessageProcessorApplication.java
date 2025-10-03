@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Entry point for the Spring Boot microservice application.
  */
 @SpringBootApplication
-public class CourtMessageProcessorApplication {
+public class CrimeCourtMessageProcessorApplication {
 
   /**
    * The application main method.
@@ -15,6 +15,6 @@ public class CourtMessageProcessorApplication {
    * @param args the application arguments.
    */
   public static void main(String[] args) {
-    SpringApplication.run(CourtMessageProcessorApplication.class, args);
+    SpringApplication.run(CrimeCourtMessageProcessorApplication.class, args);
   }
 }

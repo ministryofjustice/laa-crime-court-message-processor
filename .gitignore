@@ -1,12 +1,10 @@
 README.md
 .gradle
 build/
-!gradle/wrapper/gradle-wrapper.jar
+!crime-court-message-processor-service/gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
 .DS_Store
-
-###crime-court-message-processor-api/generated
 
 ### IntelliJ IDEA ###
 .idea
