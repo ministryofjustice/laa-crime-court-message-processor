@@ -24,20 +24,15 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build and test
-        run: ./gradlew build
+        run: |
+          pushd crime-court-message-processor-service
+          chmod +x ./gradlew
+          ./gradlew build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Test coverage verification
         run: ./gradlew jacocoTestCoverageVerification
-
-#      - name: Integration test
-#        run: ./gradlew integrationTest --tests '*IntegrationTest'
-
-#      - name: Publish package
-#        run: ./gradlew publish
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload checkstyle report
         if: always()
