@@ -32,7 +32,7 @@ def versions = [
         wiremock                : "3.10.0",
         notifyClient            : "5.2.1-RELEASE",
         commonsLang3            : "3.18.0",
-        postgresqlVersion       : "42.7.5"
+        postgresqlVersion       : "42.7.7"
 ]
 
 java {
