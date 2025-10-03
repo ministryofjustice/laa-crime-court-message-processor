@@ -32,7 +32,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Test coverage verification
-        run: ./gradlew jacocoTestCoverageVerification
+        run: |
+          pushd crime-court-message-processor-service
+          chmod +x ./gradlew
+          ./gradlew jacocoTestCoverageVerification
 
       - name: Upload checkstyle report
         if: always()
