@@ -105,10 +105,12 @@ jobs:
           ./gradlew build
 
       - name: Build a Docker image
-        run: docker build -t crime-court-message-processor:scan .
+        run: |
+          pushd crime-court-message-processor-service
+          docker build -t crime-court-message-processor-service .
 
       - name: Run Snyk to check Docker image for vulnerabilities
         uses: snyk/actions/docker@master
         with:
-          image: crime-court-message-processor:scan
+          image: crime-court-message-processor-service
           args: --file=Dockerfile --severity-threshold=high

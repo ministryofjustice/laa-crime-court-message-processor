@@ -6,7 +6,7 @@ RUN mkdir -p /opt/laa-crime-court-message-processor/
 WORKDIR /opt/laa-crime-court-message-processor/
 
 # Copy the JAR file into the container
-COPY crime-court-message-processor-service/build/libs/crime-court-message-processor-service.jar app.jar
+COPY ./build/libs/crime-court-message-processor-service.jar app.jar
 
 # Create a group and non-root user
 RUN addgroup -S appgroup && adduser -u 1001 -S appuser -G appgroup
