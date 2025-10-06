@@ -41,11 +41,11 @@ java {
 }
 
 bootRun {
-    mainClass = 'uk.gov.justice.laa.crime.courtmessageprocessor.CourtMessageProcessorApplication' //
+    mainClass = 'uk.gov.justice.laa.crime.courtmessageprocessor.CrimeCourtMessageProcessorApplication' //
 }
 
 bootJar {
-    mainClass = 'uk.gov.justice.laa.crime.courtmessageprocessor.CourtMessageProcessorApplication' //
+    mainClass = 'uk.gov.justice.laa.crime.courtmessageprocessor.CrimeCourtMessageProcessorApplication' //
 }
 
 configurations {
@@ -149,7 +149,7 @@ pitest {
                      "uk.gov.justice.laa.crime.courtmessageprocessor.controller.*"
     ]
     excludedClasses = ["uk.gov.justice.laa.crime.courtmessageprocessor.mapper.*",
-                       "uk.gov.justice.laa.crime.courtmessageprocessor.CourtMessageProcessorApplication"
+                       "uk.gov.justice.laa.crime.courtmessageprocessor.CrimeCourtMessageProcessorApplication"
     ]
     threads = 5
     mutationThreshold = 60
@@ -169,7 +169,7 @@ sonar {
     skipProject = !isCiBuild
     properties {
         property "sonar.exclusions", "**/entity/**.java , **/model/**.java , **/dto/**.java , **/config/**.java, **/jms/**.java,**/exception/**.java,**/handler/**.java"
-        property "sonar.coverage.exclusions", "**/CourtMessageProcessorApplication.java"
+        property "sonar.coverage.exclusions", "**/CrimeCourtMessageProcessorApplication.java"
         property "sonar.coverage.jacoco.xmlReportPaths", "${project.layout.buildDirectory}/reports/jacoco/test/jacocoTestReport.xml"
         property "sonar.projectKey", "ministryofjustice_laa-crime-court-message-processor"
         property "sonar.organization", "ministryofjustice"
