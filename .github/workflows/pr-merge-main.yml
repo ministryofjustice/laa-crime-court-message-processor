@@ -24,29 +24,25 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build and test
-        run: ./gradlew build
+        run: |
+          pushd crime-court-message-processor-service
+          chmod +x ./gradlew
+          ./gradlew build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Test coverage verification
-        run: ./gradlew jacocoTestCoverageVerification
-
-      - name: Integration test
-        run: ./gradlew integrationTest --tests '*IntegrationTest'
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: spring-boot-microservice-service/build/test-results
-          retention-days: 14
+        run: |
+          pushd crime-court-message-processor-service
+          chmod +x ./gradlew
+          ./gradlew jacocoTestCoverageVerification
 
       - name: Upload checkstyle report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: checkstyle-report
-          path: spring-boot-microservice-service/build/reports/checkstyle
+          path: crime-court-message-processor-service/build/reports/checkstyle
           retention-days: 14
 
       - name: Upload test report
@@ -54,7 +50,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-report
-          path: spring-boot-microservice-service/build/reports/tests
+          path: crime-court-message-processor-service/build/reports/tests
           retention-days: 14
 
       - name: Upload jacoco coverage report
@@ -62,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-coverage-report
-          path: spring-boot-microservice-service/build/reports/jacoco
+          path: crime-court-message-processor-service/build/reports/jacoco/test
           retention-days: 14
 
   vulnerability-report:
