@@ -1,0 +1,15 @@
+{{- if .Values.actuator.metrics.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "crime-court-message-processor-service.fullname" .  }}-monitoring
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "crime-court-message-processor-service.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: actuator
+      interval: {{ .Values.actuator.metrics.scrapeInterval }}
+      path: {{ .Values.actuator.metrics.path }}
+{{- end }}
