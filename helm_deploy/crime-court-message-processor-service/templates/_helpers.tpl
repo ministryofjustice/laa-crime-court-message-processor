@@ -65,7 +65,7 @@ Create the name of the service account to use
 Create ingress configuration
 */}}
 {{- define "crime-court-message-processor-service.ingress" -}}
-{{- $internalAllowlistSourceRange := (lookup "v1" "Secret" .Release.Namespace "maat-scheduled-tasks-env-variables").data.INTERNAL_ALLOWLIST_SOURCE_RANGE | b64dec }}
+{{- $internalAllowlistSourceRange := (lookup "v1" "Secret" .Release.Namespace "ccmp-env-variables").data.INTERNAL_ALLOWLIST_SOURCE_RANGE | b64dec }}
 {{- if $internalAllowlistSourceRange }}
   nginx.ingress.kubernetes.io/whitelist-source-range: {{ $internalAllowlistSourceRange }}
   external-dns.alpha.kubernetes.io/set-identifier: {{ include "crime-court-message-processor-service.fullname" . }}-{{ $.Values.ingress.environmentName}}-green
