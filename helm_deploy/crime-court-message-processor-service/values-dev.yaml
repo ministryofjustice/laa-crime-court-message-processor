@@ -7,7 +7,7 @@ replicaCount: 1
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/crime-court-message-processor-service-dev
+  repository: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-crime-court-message-processor-dev
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
@@ -33,14 +33,14 @@ service:
 # TODO ingress config
 ingress:
   enabled: true
-  environmentName: crime-court-message-processor-service-dev
+  environmentName: laa-crime-court-message-processor-dev
   className: default
   annotations:
     external-dns.alpha.kubernetes.io/aws-weight: "100"
     nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/session-cookie-max-age: "300"
   hosts:
-    - host: crime-court-message-processor-service-dev.apps.live.cloud-platform.service.justice.gov.uk
+    - host: laa-crime-court-message-processor-dev.apps.live.cloud-platform.service.justice.gov.uk
       paths:
         - path: /
           pathType: "Prefix"

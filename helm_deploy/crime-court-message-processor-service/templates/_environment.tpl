@@ -21,17 +21,17 @@ env:
   - name: DATASOURCE_USERNAME
     valueFrom:
         secretKeyRef:
-            name: crime-court-message-processor-service-env-variables
+            name: ccmp-env-variables
             key: TOGDATA_DATASOURCE_USERNAME
   - name: DATASOURCE_PASSWORD
     valueFrom:
         secretKeyRef:
-            name: crime-court-message-processor-service-env-variables
+            name: ccmp-env-variables
             key: TOGDATA_DATASOURCE_PASSWORD
   - name: DATASOURCE_URL
     valueFrom:
         secretKeyRef:
-            name: crime-court-message-processor-service-env-variables
+            name: ccmp-env-variables
             key: DATASOURCE_URL
 
 {{- end -}}
