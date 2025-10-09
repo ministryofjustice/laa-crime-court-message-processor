@@ -33,10 +33,9 @@ env:
         secretKeyRef:
             name: ccmp-env-variables
             key: DATASOURCE_HOST_PORT
- - name: DATASOURCE_DBNAME
+  - name: DATASOURCE_DBNAME
     valueFrom:
         secretKeyRef:
             name: ccmp-env-variables
             key: DATASOURCE_DBNAME
-
 {{- end -}}
