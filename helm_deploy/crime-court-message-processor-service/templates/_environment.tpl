@@ -9,7 +9,7 @@ env:
   - name: SENTRY_DSN
     valueFrom:
       secretKeyRef:
-        name: crime-court-message-processor-service-env-variables
+        name: ccmp-env-variables
         key: SENTRY_DSN
   - name: SENTRY_ENV
     value: {{ .Values.host_env }}
