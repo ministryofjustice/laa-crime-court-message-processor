@@ -22,16 +22,21 @@ env:
     valueFrom:
         secretKeyRef:
             name: ccmp-env-variables
-            key: TOGDATA_DATASOURCE_USERNAME
+            key: DATASOURCE_USERNAME
   - name: DATASOURCE_PASSWORD
     valueFrom:
         secretKeyRef:
             name: ccmp-env-variables
-            key: TOGDATA_DATASOURCE_PASSWORD
-  - name: DATASOURCE_URL
+            key: DATASOURCE_PASSWORD
+  - name: DATASOURCE_HOST_PORT
     valueFrom:
         secretKeyRef:
             name: ccmp-env-variables
-            key: DATASOURCE_URL
+            key: DATASOURCE_HOST_PORT
+ - name: DATASOURCE_DBNAME
+    valueFrom:
+        secretKeyRef:
+            name: ccmp-env-variables
+            key: DATASOURCE_DBNAME
 
 {{- end -}}
