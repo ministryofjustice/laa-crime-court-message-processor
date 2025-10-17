@@ -8,7 +8,7 @@ This is a Java 21 based Spring Boot application hosted on [MOJ Cloud Platform](h
 - Java 21
 - Gradle
 - Docker
-- AWS CLI 
+- Cloud Platform CLI 
 - An editor/IDE of some sort - preferably Intellij/Eclipse 
 - kubectl
 - Helm
@@ -25,14 +25,44 @@ To build the application run:
 TODO
 
 
-## Testing the application locally
-
-TODO
 
 ## CI/CD Pipeline
 
 [GitHub Actions](https://github.com/ministryofjustice/laa-crime-court-message-processor/actions) are used to manage the CI/CD pipeline for this application.
 
-### Deploying from a branch
+This table shows the automated workflows that are configured for this application.
 
-### .
+
+| Workflow                                                                                                             | Triggered On                                                                 | Actions                                                                                                                                            |
+|----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Gradle build and test<br/>[gradle-build-and-test.yaml](.github/workflows/gradle-build-and-test.yaml)                 | * Push to `main` branch<br/>* Push to a PR                                   | 1. Run the Gradle Build.  Produce JUnit and test coverage reports<br/>2. Run Snyk scan on the application<br/>3. Run Synk scan on the docker image |
+| CodeQL<br/>[codeql-analysis.yml](.github/workflows/codeql-analysis.yml)                                              | * Push to `main` branch<br/>* Push to a PR<br/>* 05:34 every Saturday        | Perform CodeQL analysis                                                                                                                            |
+| Build and Deploy to Non-Prod Environments<br/>[cp-deployment-branch.yml](.github/workflows/cp-deployment-branch.yml) | * Push to any branch other than `main`<br/>* Manual invocation via GitHub UI | 1. Build docker image & push to image repository<br/>2. Simultaneously deploy to `dev`, `test` & `uat`                                             |
+| Build and Deploy CCMP to CP<br/>[cp-deployment.yml](.github/workflows/cp-deployment.yml)                             | * Push to `main`<br/>* Manual invocation via GitHub UI                       | 1. Build docker image & push to image repository<br/>2. Simultaneously deploy to `dev`, `test`, `uat` & `prod`                                     |
+
+### Deploying Manually 
+
+The application can be deployed manually via the GitHub UI.
+
+1. Go to the Actions page https://github.com/ministryofjustice/laa-maat-court-data-api/actions
+2. Click on either the `Build and Deploy to Non-Prod Environments` or `Build and Deploy CCMP to CP` workflows
+3. Click on the `Run workflow` button
+4. Select the branch to deploy from the dropdown
+5. Click on the `Run workflow` button
+
+**TODO: Describe what happens next**
+
+### View workflow logs
+
+1. Go to the Actions page https://github.com/ministryofjustice/laa-crime-court-message-processor/actions
+2. Click on the workflows in question to show a list of runs
+3. Click on the run you want to view to show the jobs in that run. Any failed jobs will have a red X next to them.
+4. Click on any individual job to show the steps in that job
+5. Drill down in to the individual step to see the logs
+
+
+### Deployment issues
+
+* Find pods in the environment
+* look at pods logs
+* look at pods events
