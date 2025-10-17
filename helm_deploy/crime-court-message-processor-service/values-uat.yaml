@@ -86,3 +86,11 @@ actuator:
 spring:
   profiles:
     active: uat
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop: ["ALL"]
+  runAsNonRoot: true
+  seccompProfile:
+    type: RuntimeDefault
