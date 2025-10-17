@@ -79,7 +79,7 @@ jobs:
 
   deploy-to-test:
     name: deploy-to-test
-    needs: [application-image-build]
+    needs: [deploy-to-development]
     runs-on: ubuntu-latest
     environment: test
     env:
@@ -111,7 +111,7 @@ jobs:
 
   deploy-to-uat:
     name: deploy-to-uat
-    needs: [application-image-build]
+    needs: [deploy-to-development]
     runs-on: ubuntu-latest
     environment: uat
     env:
