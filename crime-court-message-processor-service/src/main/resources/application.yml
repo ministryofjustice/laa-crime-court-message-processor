@@ -40,11 +40,13 @@ sentry:
   sample-rate: ${SENTRY_SAMPLE_RATE}
 
 management:
+  server:
+    port: 8510
   # specify actuator endpoints to enable
   endpoints:
     web:
       exposure:
-        include: health
+        include: health,info,metrics,prometheus
 
   # show detailed health status
   endpoint:
