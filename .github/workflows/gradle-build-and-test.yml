@@ -65,10 +65,16 @@ jobs:
 
       - name: Run Snyk to check app for vulnerabilities
         uses: snyk/actions/gradle@master
+        continue-on-error: true # To make sure that SARIF upload gets called
         with:
           command: code test
-          args: --severity-threshold=high
+          args: --severity-threshold=high --sarif-file-output=snyk-application-scan.sarif
 
+      - name: Upload Snyk application scan results to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          category: application-scan
+          sarif_file: snyk-application-scan.sarif
 
   vulnerability-scan-docker:
     runs-on: ubuntu-latest
@@ -102,6 +108,13 @@ jobs:
 
       - name: Run Snyk to check Docker image for vulnerabilities
         uses: snyk/actions/docker@master
+        continue-on-error: true # To make sure that SARIF upload gets called
         with:
           image: crime-court-message-processor-service:scan
-          args: --file=crime-court-message-processor-service/Dockerfile --severity-threshold=high
+          args: --file=crime-court-message-processor-service/Dockerfile --severity-threshold=high --sarif-file-output=snyk-docker-scan.sarif
+
+      - name: Upload Snyk Docker image scan results to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          category: docker-image-scan
+          sarif_file: snyk-docker-scan.sarif
