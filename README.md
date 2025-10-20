@@ -44,7 +44,7 @@ This table shows the automated workflows that are configured for this applicatio
 
 The application can be deployed manually via the GitHub UI from PR branches or from the `main` branch.
 
-1. Go to the Actions page https://github.com/ministryofjustice/laa-maat-court-data-api/actions
+1. Go to the Actions page https://github.com/ministryofjustice/laa-crime-court-message-processor/actions
 2. Click on either the `Build and Deploy to Non-Prod Environments` or `Build and Deploy CCMP to CP` workflows
 3. Click on the `Run workflow` button
 4. Select the branch to deploy from the dropdown
