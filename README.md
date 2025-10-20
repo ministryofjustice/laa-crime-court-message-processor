@@ -61,6 +61,22 @@ The application can be deployed manually via the GitHub UI from PR branches or f
 
 ### Deployment issues
 
+If a deployment fails on the Helm deployment step, it will display a simple error message and exit.
+```text
+Run cd helm_deploy/crime-court-message-processor-service
+Error: UPGRADE FAILED: context deadline exceeded
+Error: Process completed with exit code 1.
+```
+Use these commands to troubleshoot the issue.
+
+* Look at events in the namespace
+
+  ```kubectl get events -n laa-crime-court-message-processor-<env>```
+
 * Find pods in the environment
-* look at pods logs
-* look at pods events
+
+  ```kubectl get pods -n laa-crime-court-message-processor-<env>```
+
+* Look at the logs for the application
+
+  ```kubectl logs -n laa-crime-court-message-processor-<env> <pod-name>```
