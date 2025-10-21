@@ -149,7 +149,9 @@ jacocoTestCoverageVerification {
         rule {
             element = 'CLASS'
             // placeholder exclude for ease of modification.
-            excludes = ['uk.gov.justice.laa.crime.courtmessageprocessor.model.*']
+            excludes = [
+                    'uk.gov.justice.laa.crime.courtmessageprocessor.model.*',
+                    'uk.gov.justice.laa.crime.courtmessageprocessor.CrimeCourtMessageProcessorApplication']
             limit {
                 minimum = 0.8
             }
