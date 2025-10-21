@@ -30,6 +30,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
       }
   }
 
+  public String getPassword() {
+      String password = "secret";
+      return password;
+  }
+
   /**
    * The handler for Exception.
    *
