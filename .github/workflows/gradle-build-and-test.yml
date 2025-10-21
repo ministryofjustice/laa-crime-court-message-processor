@@ -72,12 +72,12 @@ jobs:
         continue-on-error: true # To make sure that SARIF upload gets called
         with:
           command: code test
-          args: --sarif-file-output=snyk.sarif
+          args: --severity-threshold=high --sarif-file-output=snyk.sarif
 
       - name: Upload Snyk application scan results to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
         with:
-          #category: application-scan
+          category: application-scan
           sarif_file: snyk.sarif
 
   vulnerability-scan-docker:
@@ -120,5 +120,5 @@ jobs:
       - name: Upload Snyk Docker image scan results to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
         with:
-          #category: docker-image-scan
+          category: docker-image-scan
           sarif_file: snyk.sarif

@@ -23,6 +23,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
    */
   @ExceptionHandler(ItemNotFoundException.class)
   public ResponseEntity<String> handleItemNotFound(ItemNotFoundException exception) {
+      //return ResponseEntity.status(NOT_FOUND).body(exception.getMessage());
+      // This code below is added to force a Snyk code scan failure.
       if (true) {
           return ResponseEntity.status(NOT_FOUND).body(exception.getMessage());
       } else {
@@ -30,6 +32,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
       }
   }
 
+  // This code below is added to force a Snyk code scan failure.
   public String getPassword() {
       String password = "secret";
       return password;
