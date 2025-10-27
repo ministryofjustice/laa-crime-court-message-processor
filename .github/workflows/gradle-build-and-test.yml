@@ -19,7 +19,7 @@ jobs:
           distribution: 'corretto'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Build and test
         run: |
@@ -37,7 +37,7 @@ jobs:
 
       - name: Upload test report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: test-report
           path: crime-court-message-processor-service/build/reports/tests
@@ -45,7 +45,7 @@ jobs:
 
       - name: Upload jacoco coverage report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: jacoco-coverage-report
           path: crime-court-message-processor-service/build/reports/jacoco/test
@@ -87,7 +87,7 @@ jobs:
           distribution: 'corretto'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Build app jar with gradle
         run: |
