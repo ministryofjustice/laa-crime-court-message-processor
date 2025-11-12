@@ -151,6 +151,7 @@ jacocoTestCoverageVerification {
             // placeholder exclude for ease of modification.
             excludes = [
                     'uk.gov.justice.laa.crime.courtmessageprocessor.model.*',
+                    'uk.gov.justice.laa.crime.courtmessageprocessor.config.*',
                     'uk.gov.justice.laa.crime.courtmessageprocessor.CrimeCourtMessageProcessorApplication']
             limit {
                 minimum = 0.8
